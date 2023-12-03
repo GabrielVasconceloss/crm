@@ -1,0 +1,38 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    <div class="container-fluid mt-5 mb-5">
+        <div class="row justify-content-center ">
+            <div class="col-md-5 bg-success rounded-4 p-3">
+                <div class="card-body">
+                    <h2>Add Status</h2>
+                    <form method="POST">
+                        {% csrf_token %}
+                    <div class="mb-3">
+                        {{ form.title.label_tag }}
+                        {{ form.title }}
+                        {{ form.title.errors }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form.description.label_tag }}
+                        {{ form.description }}
+                        {{ form.description.errors }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form.title_color.label_tag }}
+                        {{ form.title_color }}
+                        {{ form.title_color.errors }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form.text_color.label_tag }}
+                        {{ form.text_color }}
+                        {{ form.text_color.errors }}
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add Status</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -7,6 +7,45 @@
 {% block content %}
     <div class="container-fluid">
         <h1>CRM / Flow</h1>
+        <a href="{% url 'addcamp' %}" class="btn btn-primary text-decoration-none"><span>Create Flow</span> </a>
+    <a href="{% url 'add_status' %}" class="btn btn-success text-decoration-none"><span>Create Status</span> </a>
+        <div class="container mt-5">
+            <div class="row">
+                {% for status in Status %}
+                    <div class="col-sm-4 mb-2">
+                        <div class="card">
+                            <div class="card-header" style="background-color: {{ status.title_color }}; color: {{ status.text_color }};">
+                                {{ status.title }}
+                                 <a href="{% url 'edit_status' status.id %}" class="btn btn-primary">Edit</a>
+                                 <a href="{% url 'delete_status' status.id %}" class="btn btn-danger">Delete</a>
+                            </div>
+                            <div class="card-body" id="{{ status.title|lower }}-list" data-bs-draggable-target="task">
+                                <!-- Cards for tasks will be dynamically added here -->
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
     </div>
-    <a href="{% url 'addcamp' %}" class="btn btn-primary text-decoration-none"><span>Create Flow</span> </a>
 {% endblock %}
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        {% for status in statuses %}
+            const sortable{{ status.title|title }} = new Sortable(document.getElementById('{{ status.title|lower }}-list'), {
+                group: 'task',
+                animation: 150
+            });
+        {% endfor %}
+
+        // Example: Add a task dynamically
+        {% for status in statuses %}
+            const {{ status.title|lower }}List = document.getElementById('{{ status.title|lower }}-list');
+            const newTask{{ status.title|title }} = document.createElement('div');
+            newTask{{ status.title|title }}.className = 'card kanban-card';
+            newTask{{ status.title|title }}.innerHTML = '<div class="card-body">New Task</div>';
+            {{ status.title|lower }}List.appendChild(newTask{{ status.title|title }});
+        {% endfor %}
+    });
+</script>
