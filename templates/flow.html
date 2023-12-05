@@ -6,18 +6,24 @@
 
 {% block content %}
     <div class="container-fluid">
-        <h1>CRM / Flow</h1>
-        <a href="{% url 'addcamp' %}" class="btn btn-primary text-decoration-none"><span>Create Flow</span> </a>
-    <a href="{% url 'add_status' %}" class="btn btn-success text-decoration-none"><span>Create Status</span> </a>
+        <div class="d-flex justify-content-between align-items-center">
+            <h1>CRM / Flow</h1>
+            <div>
+                <a href="{% url 'addcamp' %}" class="btn btn-primary text-decoration-none"><span>Create Flow</span></a>
+                <a href="{% url 'add_status' %}" class="btn btn-success text-decoration-none"><span>Create Status</span></a>
+            </div>
+        </div>
         <div class="container mt-5">
             <div class="row">
                 {% for status in Status %}
                     <div class="col-sm-4 mb-2">
                         <div class="card">
-                            <div class="card-header" style="background-color: {{ status.title_color }}; color: {{ status.text_color }};">
+                            <div class="card-header card-header d-flex justify-content-between align-items-center" style="background-color: {{ status.title_color }}; color: {{ status.text_color }};">
                                 {{ status.title }}
+                                <div class="btn-group">
                                  <a href="{% url 'edit_status' status.id %}" class="btn btn-primary">Edit</a>
                                  <a href="{% url 'delete_status' status.id %}" class="btn btn-danger">Delete</a>
+                                </div>
                             </div>
                             <div class="card-body" id="{{ status.title|lower }}-list" data-bs-draggable-target="task">
                                 <!-- Cards for tasks will be dynamically added here -->

@@ -5,27 +5,27 @@
         <div class="row justify-content-center ">
             <div class="col-md-5 bg-success rounded-4 p-3">
                 <div class="card-body">
-                    <h2>Add Status</h2>
+                    <h2 class="text-white" >Add Status</h2>
                     <form method="POST">
                         {% csrf_token %}
                     <div class="mb-3">
-                        {{ form.title.label_tag }}
-                        {{ form.title }}
+                        <label for="{{ form.title.id_for_label }}" class="form-label text-white">{{ form.title.label }}</label>
+                        <input type="text" class="form-control" placeholder="Title..." value="{{ form.title.value }}" name="{{ form.title.name }}" id="{{ form.title.id_for_label }}" aria-describedby="{{ form.title.id_for_label }}">
                         {{ form.title.errors }}
                     </div>
                     <div class="mb-3">
-                        {{ form.description.label_tag }}
-                        {{ form.description }}
+                        <label for="{{ form.description.id_for_label }}" class="form-label text-white">{{ form.description.label }}</label>
+                        <input type="text" class="form-control" placeholder="Description..." name="{{ form.description.name }}" value="{{ form.description.value }}" id="{{ form.description.id_for_label }}" aria-describedby="{{ form.description.id_for_label }}">
                         {{ form.description.errors }}
                     </div>
                     <div class="mb-3">
-                        {{ form.title_color.label_tag }}
-                        {{ form.title_color }}
+                        <label for="{{ form.title_color.id_for_label }}" class="form-label text-white">{{ form.title_color.label }}</label>
+                        <input type="text" class="form-control" name="{{ form.title_color.name }}" value="{{ form.title_color.value  }}" id="{{ form.title_color.id_for_label }}" aria-describedby="{{ form.title_color.id_for_label }}">
                         {{ form.title_color.errors }}
                     </div>
                     <div class="mb-3">
-                        {{ form.text_color.label_tag }}
-                        {{ form.text_color }}
+                        <label for="{{ form.text_color.id_for_label }}" class="form-label text-white">{{ form.text_color.label }}</label>
+                        <input type="text" class="form-control" name="{{ form.text_color.name }}" value="{{ form.text_color.value  }}" id="{{ form.text_color.id_for_label }}" aria-describedby="{{ form.text_color.id_for_label }}">
                         {{ form.text_color.errors }}
                     </div>
                     <button type="submit" class="btn btn-primary">Add Status</button>
