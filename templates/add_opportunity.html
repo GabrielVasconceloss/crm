@@ -1,0 +1,54 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    <div class="container-fluid mt-5 mb-5">
+        <div class="row justify-content-center ">
+            <div class="col-md-5 bg-primary rounded-4 p-3">
+                <div class="card-body">
+                    <h2 class="text-white" >Add Opportunity</h2>
+                    <form method="POST">
+                        {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="{{ form.opportunity_name.id_for_label }}" class="form-label text-white">{{ form.opportunity_name.label }}</label>
+                        <input type="text" class="form-control" placeholder="Opportunity name..."
+                               {% if form.opportunity_name.value %}
+                                value="{{ form.opportunity_name.value }}"
+                               {% endif %}
+                               name="{{ form.opportunity_name.name }}" id="{{ form.opportunity_name.id_for_label }}" aria-describedby="{{ form.opportunity_name.id_for_label }}">
+                        {{ form.opportunity_name.errors }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="{{ form.opportunity_description.id_for_label }}" class="form-label text-white">{{ form.opportunity_description.label }}</label>
+                        <input type="text" class="form-control" placeholder="Opportunity description..."  name="{{ form.opportunity_description.name }}"
+                               {% if form.opportunity_description.value %}
+                                value="{{ form.opportunity_description.value }}"
+                               {% endif %}
+                               id="{{ form.opportunity_description.id_for_label }}" aria-describedby="{{ form.opportunity_description.id_for_label }}">
+                        {{ form.opportunity_description.errors }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="{{ form.amount.id_for_label }}" class="form-label text-white">{{ form.amount.label }}</label>
+                        <input type="number" class="form-control" placeholder="Amount..." name="{{ form.amount.name }}"
+                               {% if form.amount.value %}
+                                value="{{ form.amount.value }}"
+                               {% endif %}
+                               id="{{ form.amount.id_for_label }}" aria-describedby="{{ form.amount.id_for_label }}">
+                        {{ form.amount.errors }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="{{ form.status.id_for_label }}" class="form-label text-white">{{ form.status.label }}</label>
+                        <select class="form-select" name="{{ form.status.name }}" id="{{ form.status.id_for_label }}" aria-describedby="{{ form.status.id_for_label }}">
+                            {% for value, label in form.status.field.choices %}
+                                 <option value="{{ value }}" {% if value == form.status.value %}selected{% endif %}>{{ label }}</option>
+                            {% endfor %}
+                        </select>
+                        {{ form.status.errors }}
+                    </div>
+                    <button type="submit" class="btn btn-success">{{ btn_description }}</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

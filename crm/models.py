@@ -9,14 +9,14 @@ class Camp(models.Model):
         return "{} ({})".format(self.title, self.description)
 
 
-class status(models.Model):
+class Status(models.Model):
     title = models.CharField(max_length=50)
     description = models.CharField(max_length=500, verbose_name="Description")
     title_color = models.CharField(max_length=7, default='#fff', help_text='Enter a hex color code for the title')
     text_color = models.CharField(max_length=7, default='#000000', help_text='Enter a hex color code for the text')
 
     def __str__(self):
-        return "{} ({})".format(self.title, self.description)
+        return "{}".format(self.title)
 
 
 class Customer(models.Model):
@@ -44,7 +44,7 @@ class Opportunity(models.Model):
     opportunity_name = models.CharField(max_length=255)
     opportunity_description = models.TextField()
     amount = models.DecimalField(max_digits=10, decimal_places=2)
-    status = models.CharField(max_length=50)
+    status = models.ForeignKey(Status, on_delete=models.SET_NULL, null=True, blank=True)
 
     def __str__(self):
         return "{} ({})".format(self.opportunity_name, self.opportunity_description)

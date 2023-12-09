@@ -1,0 +1,37 @@
+{% extends 'index.html' %}
+
+{% block title %}
+    <title>CRM - Opportunity List</title>
+{% endblock %}
+
+{% block content %}
+    <div class="container mt-5">
+        <div class="d-flex justify-content-between align-items-center">
+        <h2>List of Opportunities</h2>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Client</th>
+                    <th>Oportunidade</th>
+                    <th>Description</th>
+                    <th>Value</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for opportunity in opportunities %}
+                    <tr>
+                        <td>{{ opportunity.id }}</td>
+                        <td>{{ opportunity.customer.first_name }} {{ opportunity.customer.last_name }}</td>
+                        <td>{{ opportunity.opportunity_name }}</td>
+                        <td>{{ opportunity.opportunity_description }}</td>
+                        <td>{{ opportunity.amount }}</td>
+                        <td>{{ opportunity.status }}</td>
+                    </tr>
+                {% endfor %}s
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

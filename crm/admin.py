@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Camp, status, Customer, Contact, Opportunity, Activity
+from .models import Camp, Status, Customer, Contact, Opportunity, Activity
 
 # Register your models here.
 
@@ -11,7 +11,7 @@ class CustomerAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Camp)
-admin.site.register(status)
+admin.site.register(Status)
 admin.site.register(Contact)
 admin.site.register(Opportunity)
 admin.site.register(Activity)

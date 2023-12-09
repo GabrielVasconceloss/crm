@@ -26,15 +26,21 @@
                                id="{{ form.description.id_for_label }}" aria-describedby="{{ form.description.id_for_label }}">
                         {{ form.description.errors }}
                     </div>
-                    <div class="mb-3">
-                        <label for="{{ form.title_color.id_for_label }}" class="form-label text-white">{{ form.title_color.label }}</label>
-                        <input type="text" class="form-control" name="{{ form.title_color.name }}" value="{{ form.title_color.value  }}" id="{{ form.title_color.id_for_label }}" aria-describedby="{{ form.title_color.id_for_label }}">
-                        {{ form.title_color.errors }}
-                    </div>
-                    <div class="mb-3">
-                        <label for="{{ form.text_color.id_for_label }}" class="form-label text-white">{{ form.text_color.label }}</label>
-                        <input type="text" class="form-control" name="{{ form.text_color.name }}" value="{{ form.text_color.value  }}" id="{{ form.text_color.id_for_label }}" aria-describedby="{{ form.text_color.id_for_label }}">
-                        {{ form.text_color.errors }}
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <label for="{{ form.title_color.id_for_label }}" class="form-label text-white">Background color</label>
+                                <input type="color" class="form-control form-control-color" id="{{ form.title_color.id_for_label }}" value="{{ form.title_color.value  }}" name="{{ form.title_color.name }}" title="Choose your color" aria-describedby="{{ form.title_color.id_for_label }}">
+                                {{ form.title_color.errors }}
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <label for="{{ form.text_color.id_for_label }}" class="form-label text-white">{{ form.text_color.label }}</label>
+                                <input type="color" class="form-control form-control-color" id="{{ form.text_color.id_for_label }}" value="{{ form.text_color.value  }}" name="{{ form.text_color.name }}" title="Choose your color" aria-describedby="{{ form.text_color.id_for_label }}">
+                                {{ form.text_color.errors }}
+                            </div>
+                        </div>
                     </div>
                     <button type="submit" class="btn btn-primary">{{ btn_description }}</button>
                     </form>

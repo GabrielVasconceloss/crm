@@ -1,49 +1,55 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from .forms import StatusForm, CustomerForm
-from .models import Camp, status, Customer
+from .forms import StatusForm, CustomerForm, OpportunityForm
+from .models import Camp, Status, Customer, Opportunity
 from django.urls import reverse_lazy
 
 
 @login_required
 def flow(request):
-    Status = status.objects.all()
-    return render(request, 'flow.html', {'Status': Status})
+    status = Status.objects.all()
+    return render(request, 'flow.html', {'status': status})
+
 
 @login_required
 def creatCamp(request):
     return render(request, 'addcamp.html')
 
+
 @login_required
 def add_status(request):
+    btn_description = 'Add Status'
     if request.method == 'POST':
         form = StatusForm(request.POST)
         if form.is_valid():
-            status = form.save()
-            return redirect('flow')
+            form.save()
+            return redirect('opportunity_kanban')
     else:
         form = StatusForm()
-    return render(request, 'add_status.html', {'form': form})
+    return render(request, 'add_status.html', {'form': form, 'btn_description': btn_description})
+
 
 @login_required
 def edit_status(request, status_id):
-    Status = get_object_or_404(status, id=status_id)
-
+    status = get_object_or_404(Status, id=status_id)
+    btn_description = 'Edit Status'
     if request.method == 'POST':
-        form = StatusForm(request.POST, instance=Status)
+        form = StatusForm(request.POST, instance=status)
         if form.is_valid():
             form.save()
-            return redirect('flow')
+            return redirect('opportunity_kanban')
     else:
-        form = StatusForm(instance=Status)
+        form = StatusForm(instance=status)
 
-    return render(request, 'add_status.html', {'form': form, 'status': Status})
+    return render(request, 'add_status.html', {'form': form, 'status': status, 'btn_description': btn_description})
+
 
 @login_required
 def delete_status(request, status_id):
-    Status = get_object_or_404(status, id=status_id)
-    Status.delete()
+    status = get_object_or_404(Status, id=status_id)
+    status.delete()
     return redirect('flow')
+
 
 @login_required
 def customer_list(request):
@@ -77,3 +83,31 @@ def edit_customer(request, customer_id):
         form = CustomerForm(instance=customer)
 
     return render(request, 'add_customer.html', {'form': form, 'Customer': customer, 'btn_description': btn_description})
+
+@login_required
+def opportunity_list(request):
+    opportunities = Opportunity.objects.all()
+    return render(request, 'opportunity_list.html', {'opportunities': opportunities})
+
+@login_required
+def add_opportunity(request, customer_id):
+    customer = get_object_or_404(Customer, id=customer_id)
+    #btn_description = 'Edit Opportunity'
+    btn_description = 'Add Opportunity'
+    if request.method == 'POST':
+        form = OpportunityForm(request.POST)
+        if form.is_valid():
+            opportunity = form.save(commit=False)
+            opportunity.customer = customer
+            opportunity.save()
+            return redirect('customer_list')
+    else:
+        form = OpportunityForm()
+
+    return render(request, 'add_opportunity.html', {'form': form, 'customer': customer, 'btn_description': btn_description})
+
+@login_required
+def opportunity_kanban(request):
+    status_list = Status.objects.all()
+    opportunities_list = Opportunity.objects.all()
+    return render(request, 'opportunity_kanban.html', {'status_list': status_list, 'opportunities_list': opportunities_list})
