@@ -10,12 +10,20 @@
                         {% csrf_token %}
                     <div class="mb-3">
                         <label for="{{ form.title.id_for_label }}" class="form-label text-white">{{ form.title.label }}</label>
-                        <input type="text" class="form-control" placeholder="Title..." value="{{ form.title.value }}" name="{{ form.title.name }}" id="{{ form.title.id_for_label }}" aria-describedby="{{ form.title.id_for_label }}">
+                        <input type="text" class="form-control" placeholder="Title..."
+                               {% if form.title.value %}
+                                value="{{ form.title.value }}"
+                               {% endif %}
+                               name="{{ form.title.name }}" id="{{ form.title.id_for_label }}" aria-describedby="{{ form.title.id_for_label }}">
                         {{ form.title.errors }}
                     </div>
                     <div class="mb-3">
                         <label for="{{ form.description.id_for_label }}" class="form-label text-white">{{ form.description.label }}</label>
-                        <input type="text" class="form-control" placeholder="Description..." name="{{ form.description.name }}" value="{{ form.description.value }}" id="{{ form.description.id_for_label }}" aria-describedby="{{ form.description.id_for_label }}">
+                        <input type="text" class="form-control" placeholder="Description..." name="{{ form.description.name }}"
+                               {% if form.description.value %}
+                                value="{{ form.description.value }}"
+                               {% endif %}
+                               id="{{ form.description.id_for_label }}" aria-describedby="{{ form.description.id_for_label }}">
                         {{ form.description.errors }}
                     </div>
                     <div class="mb-3">
@@ -28,7 +36,7 @@
                         <input type="text" class="form-control" name="{{ form.text_color.name }}" value="{{ form.text_color.value  }}" id="{{ form.text_color.id_for_label }}" aria-describedby="{{ form.text_color.id_for_label }}">
                         {{ form.text_color.errors }}
                     </div>
-                    <button type="submit" class="btn btn-primary">Add Status</button>
+                    <button type="submit" class="btn btn-primary">{{ btn_description }}</button>
                     </form>
                 </div>
             </div>

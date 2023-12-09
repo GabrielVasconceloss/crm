@@ -7,4 +7,7 @@ urlpatterns = [
     path('add_status/', views.add_status, name='add_status'),
     path('/edit_status/<int:status_id>/',views.edit_status, name='edit_status'),
     path('/delete_status/<int:status_id>/', views.delete_status, name='delete_status'),
+    path('customer-list/', views.customer_list, name='customer_list'),
+    path('add-customer/', views.add_customer, name='add_customer'),
+    path('/edit-customer/<int:customer_id>/', views.edit_customer, name='edit_customer'),
 ]
