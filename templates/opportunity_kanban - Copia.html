@@ -16,22 +16,22 @@
         <div class="container mt-5">
             <div class="row">
                 {% for Status in status_list %}
-                    <div class="col-4 mb-2">
+                    <div class="col-sm-4 mb-2">
                         <div class="card">
                             <div class="card-header card-header d-flex justify-content-between align-items-center" style="background-color: {{ Status.title_color }}; color: {{ Status.text_color }};">
                                 {{ Status.title }}
                                 <div class="btn-group">
-                                    <a href="{% url 'edit_status' Status.id %}" class="btn btn-primary">Edit</a>
-                                    <a href="{% url 'delete_status' Status.id %}" class="btn btn-danger">Delete</a>
+                                 <a href="{% url 'edit_status' Status.id %}" class="btn btn-primary">Edit</a>
+                                 <a href="{% url 'delete_status' Status.id %}" class="btn btn-danger">Delete</a>
                                 </div>
                             </div>
-                            <div class="card-body" id="{{ Status.title|lower }}-list" data-bs-draggable-target="task" ondrop="drop(event)" ondragover="allowDrop(event)">
+                            <div class="card-body" id="{{ Status.title|lower }}-list" data-bs-draggable-target="task">
                                 {% for opportunity in opportunities_list %}
                                     {% if opportunity.status == Status %}
-                                        <div class="kanban-card" draggable="true" ondragstart="drag(event)">
+                                        <li class="list-group-item">
                                             <strong>{{ opportunity.opportunity_name }}</strong><br>
                                             <small>{{ opportunity.customer.first_name }} {{ opportunity.customer.last_name }}</small>
-                                        </div>
+                                        </li>
                                     {% endif %}
                                 {% endfor %}
                             </div>
@@ -41,24 +41,24 @@
             </div>
         </div>
     </div>
-
-    <script>
-        function allowDrop(ev) {
-            ev.preventDefault();
-        }
-
-        function drag(ev) {
-            ev.dataTransfer.setData("text", ev.target.innerText);
-        }
-
-        function drop(ev) {
-            ev.preventDefault();
-            const data = ev.dataTransfer.getData("text");
-            const task = document.createElement("div");
-            task.className = "kanban-card";
-            task.innerText = data;
-            ev.target.appendChild(task);
-        }
-    </script>
-
 {% endblock %}
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        {% for status in statuses %}
+            const sortable{{ status.title|title }} = new Sortable(document.getElementById('{{ status.title|lower }}-list'), {
+                group: 'task',
+                animation: 150
+            });
+        {% endfor %}
+
+        // Example: Add a task dynamically
+        {% for status in statuses %}
+            const {{ status.title|lower }}List = document.getElementById('{{ status.title|lower }}-list');
+            const newTask{{ status.title|title }} = document.createElement('div');
+            newTask{{ status.title|title }}.className = 'card kanban-card';
+            newTask{{ status.title|title }}.innerHTML = '<div class="card-body">New Task</div>';
+            {{ status.title|lower }}List.appendChild(newTask{{ status.title|title }});
+        {% endfor %}
+    });
+</script>

@@ -8,7 +8,7 @@ from django.urls import reverse_lazy
 @login_required
 def flow(request):
     status = Status.objects.all()
-    return render(request, 'flow.html', {'status': status})
+    return render(request, 'flow.html', {'status_list': status})
 
 
 @login_required

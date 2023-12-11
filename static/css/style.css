@@ -3,4 +3,38 @@
     border-radius: 15px;
 }
 
+.kanban-board {
+  display: flex;
+  padding: 5px;
+  overflow-x: auto;
+  background: #a6b5cc;
+}
+
+
+.column {
+  width: 250px;
+  min-width: 250px;
+  height: 100px;
+  background: #fff;
+  margin: 5px;
+  margin-right: 5px;
+  flex-shrink: 0;
+  border-radius: 4px;
+}
+
+.column-title{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+}
+
+.column-title h5{
+  color: #000000;
+}
+
+.column-btn{
+  font-size: 1.2rem;
+  color: #6c757d;
+}
 
