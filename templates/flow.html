@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container-fluid">
+    <div class="container-fluid background-image">
         <div class="d-flex justify-content-between align-items-center">
             <h1>CRM / Flow</h1>
             <div>
@@ -20,6 +20,13 @@
                         <h5 style="color: {{ Status.text_color }}">{{ Status.title }}</h5>
                         <a href="#"><i class="bi bi-three-dots m-2 column-btn" aria-hidden="true"></i></a>
                     </div>
+                    {% for opportunity in opportunities_list %}
+                        {% if opportunity.status == Status %}
+                            <div class="column-body">
+                                <div class="column-card">{{ opportunity.opportunity_name }}</div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
                 </div>
             {% endfor %}
         </div>
