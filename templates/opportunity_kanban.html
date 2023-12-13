@@ -1,64 +1,47 @@
 {% extends 'index.html' %}
 
 {% block title %}
-    <title>CRM - Opportunity Kanban</title>
+    <title>CRM - Opportunity</title>
 {% endblock %}
 
-{% block content %}
-    <div class="container-fluid">
-        <div class="d-flex justify-content-between align-items-center">
-            <div>
-                <h1>Opportunity Kanban</h1>
-                <a href="{% url 'opportunity_list' %}" class="btn btn-primary text-decoration-none"><span>List of Opportunities</span></a>
-            </div>
+{% block cont %}
+    <div class="container-fluid background-image">
+        <div class="d-flex justify-content-between align-items-center m-2">
+            <h2 class="text-white">Opportunity Kanban</h2>
+            <a href="{% url 'opportunity_list' %}" class="btn btn-primary text-decoration-none"><span>List</span></a>
             <a href="{% url 'add_status' %}" class="btn btn-success text-decoration-none"><span>Create Status</span></a>
         </div>
-        <div class="container mt-5">
-            <div class="row">
-                {% for Status in status_list %}
-                    <div class="col-4 mb-2">
-                        <div class="card">
-                            <div class="card-header card-header d-flex justify-content-between align-items-center" style="background-color: {{ Status.title_color }}; color: {{ Status.text_color }};">
-                                {{ Status.title }}
-                                <div class="btn-group">
-                                    <a href="{% url 'edit_status' Status.id %}" class="btn btn-primary">Edit</a>
-                                    <a href="{% url 'delete_status' Status.id %}" class="btn btn-danger">Delete</a>
-                                </div>
+        <div class="kanban-board">
+            {% for Status in status_list %}
+                <div class="column" >
+                    <div class="column-title" style="border-bottom: {{ Status.title_color }} solid 2px;">
+                        <h5 style="color: {{ Status.text_color }}">{{ Status.title }}</h5>
+                            <div class="nav-item dropdown">
+                              <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false"></a>
+                              <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{% url 'edit_status' Status.id %}">Edit</a></li>
+                                <li><a class="dropdown-item" href="{% url 'delete_status' Status.id %}">Delete</a></li>
+                              </ul>
                             </div>
-                            <div class="card-body" id="{{ Status.title|lower }}-list" data-bs-draggable-target="task" ondrop="drop(event)" ondragover="allowDrop(event)">
-                                {% for opportunity in opportunities_list %}
-                                    {% if opportunity.status == Status %}
-                                        <div class="kanban-card" draggable="true" ondragstart="drag(event)">
-                                            <strong>{{ opportunity.opportunity_name }}</strong><br>
-                                            <small>{{ opportunity.customer.first_name }} {{ opportunity.customer.last_name }}</small>
-                                        </div>
-                                    {% endif %}
-                                {% endfor %}
-                            </div>
-                        </div>
                     </div>
-                {% endfor %}
-            </div>
+                    {% for opportunity in opportunities_list %}
+                        {% if opportunity.status == Status %}
+                            <div class="column-body">
+                                <div class="column-card">
+                                    <strong>{{ opportunity.opportunity_name }}</strong><br>
+                                    <div class="column-card-span">
+                                        <span>{{ opportunity.customer.first_name }} {{ opportunity.customer.last_name }}</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% endfor %}
         </div>
     </div>
 
-    <script>
-        function allowDrop(ev) {
-            ev.preventDefault();
-        }
-
-        function drag(ev) {
-            ev.dataTransfer.setData("text", ev.target.innerText);
-        }
-
-        function drop(ev) {
-            ev.preventDefault();
-            const data = ev.dataTransfer.getData("text");
-            const task = document.createElement("div");
-            task.className = "kanban-card";
-            task.innerText = data;
-            ev.target.appendChild(task);
-        }
-    </script>
 
 {% endblock %}
+

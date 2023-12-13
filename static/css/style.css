@@ -7,13 +7,12 @@
       background-image: url('/static/image/city.png');
       background-size: cover;
       background-repeat: no-repeat;
-      padding: -5rem;
 }
 
 .kanban-board {
   display: flex;
   overflow-x: auto;
-  padding-bottom: 20px;
+  padding-bottom: 15px;
 }
 
 
@@ -57,3 +56,11 @@
   cursor: pointer;
 }
 
+.column-card-span{
+  background: #157347;
+  padding: 3px;
+  font-size: 13px;
+  color: #ffffff;
+  border-radius: 5px;
+  display: inline-block;
+}

@@ -73,25 +73,14 @@
           </nav>
         {% endblock %}
 
-        <div class="container-fluid p-2">
-        {% block content %}
-            <div class="container">
-                <h1>TELA INDEX TESTE</h1>
-                <p>
-                    A página inicial (home) de um website é uma parte crucial que deve capturar a atenção dos visitantes e oferecer uma visão clara e envolvente do conteúdo ou serviços oferecidos. Essa página deve conter elementos essenciais para proporcionar uma experiência positiva ao usuário.
+        {% block cont %}
 
-                    Primeiramente, é vital incluir uma navegação intuitiva que permita aos usuários explorar facilmente o site. Isso geralmente envolve um menu de navegação bem organizado e, possivelmente, um botão de chamada para ação destacado.
-
-                    A apresentação visual desempenha um papel fundamental. Imagens de alta qualidade relevantes ao conteúdo do site, uma paleta de cores atraente e um design responsivo são essenciais para uma experiência agradável em diferentes dispositivos.
-
-                    Além disso, a inclusão de um texto introdutório conciso que transmita a missão ou propósito do site é crucial. Elementos interativos, como sliders de destaque, podem ser incorporados para exibir informações-chave de forma dinâmica.
-
-                    Finalmente, a página inicial deve conter chamadas para ação claras, incentivando os visitantes a realizar ações específicas, como explorar mais, assinar boletins informativos ou efetuar compras.
-
-                    Ao otimizar esses elementos, a página inicial se torna uma porta de entrada eficaz para o conteúdo ou serviços oferecidos, contribuindo para uma experiência de usuário positiva e envolvente.
-                </p>
-            </div>
         {% endblock %}
+
+        <div class="container-fluid p-2">
+            {% block content %}
+
+            {% endblock %}
         </div>
 
         {% block footer %}
