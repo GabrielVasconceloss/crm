@@ -111,4 +111,11 @@ def add_opportunity(request, customer_id):
 def opportunity_kanban(request):
     status_list = Status.objects.all()
     opportunities_list = Opportunity.objects.all()
-    return render(request, 'opportunity_kanban.html', {'status_list': status_list, 'opportunities_list': opportunities_list})
+    if request.method == 'POST':
+        form = StatusForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('opportunity_kanban')
+    else:
+        form = StatusForm()
+    return render(request, 'opportunity_kanban.html', {'status_list': status_list, 'opportunities_list': opportunities_list, 'form': form})

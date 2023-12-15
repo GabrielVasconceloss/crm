@@ -11,9 +11,9 @@ class Camp(models.Model):
 
 class Status(models.Model):
     title = models.CharField(max_length=50)
-    description = models.CharField(max_length=500, verbose_name="Description")
-    title_color = models.CharField(max_length=7, default='#fff', help_text='Enter a hex color code for the title')
-    text_color = models.CharField(max_length=7, default='#000000', help_text='Enter a hex color code for the text')
+    description = models.CharField(max_length=500, verbose_name="Description", blank=True)
+    title_color = models.CharField(max_length=7, default='#000000', help_text='Enter a hex color code for the title', blank=True)
+    text_color = models.CharField(max_length=7, default='#000000', help_text='Enter a hex color code for the text', blank=True)
 
     def __str__(self):
         return "{}".format(self.title)

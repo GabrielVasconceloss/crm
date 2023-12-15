@@ -39,9 +39,20 @@
                     {% endfor %}
                 </div>
             {% endfor %}
+
+            <button class="bnt-add-status" onclick="showForm()">
+                <i class="bi bi-plus-lg"></i>
+            </button>
+            <div class="div-form-add-status" id="myForm">
+                <form method="POST">
+                    {% csrf_token %}
+                    <input type="text" class="form-control" placeholder="Title Status..." name="{{ form.title.name }}" id="{{ form.title.id_for_label }}" aria-describedby="{{ form.title.id_for_label }}">
+                    <button type="submit" class="bnt-add-status-form">Create</button>
+                </form>
+            </div>
+
         </div>
     </div>
-
 
 {% endblock %}
 
