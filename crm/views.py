@@ -49,7 +49,7 @@ def edit_status(request, status_id):
 def delete_status(request, status_id):
     status = get_object_or_404(Status, id=status_id)
     status.delete()
-    return redirect('flow')
+    return redirect('opportunity_kanban')
 
 
 @login_required
