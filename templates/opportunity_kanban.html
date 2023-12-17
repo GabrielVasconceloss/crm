@@ -23,19 +23,20 @@
                               </ul>
                             </div>
                     </div>
-                    {% for opportunity in opportunities_list %}
-                        {% if opportunity.status == Status %}
-                            <div class="column-body">
-                                <div class="column-card">
-                                    <strong>{{ opportunity.opportunity_name }}</strong><br>
-                                    <div class="column-card-span">
-                                        <span>{{ opportunity.customer.first_name }} {{ opportunity.customer.last_name }}</span>
-                                    </div>
-                                </div>
-
-                            </div>
-                        {% endif %}
-                    {% endfor %}
+                    <div class="column-body">
+                        {% for opportunity in opportunities_list %}
+                            {% if opportunity.status == Status %}
+                                <a href="{% url 'opportunity' opportunity.id %}" class="text-decoration-none">
+                                        <div class="column-card">
+                                            <strong> N°- {{ opportunity.id }} {{ opportunity.opportunity_name }}</strong><br>
+                                            <div class="column-card-span">
+                                                <span>{{ opportunity.customer.first_name }} {{ opportunity.customer.last_name }}</span>
+                                            </div>
+                                        </div>
+                                </a>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
                 </div>
             {% endfor %}
 

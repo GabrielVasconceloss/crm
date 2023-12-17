@@ -41,6 +41,8 @@
   border-radius: 4px;
 }
 
+
+
 .column-title h5{
   color: #000000;
 }
@@ -48,6 +50,10 @@
 .column-btn{
   font-size: 1.2rem;
   color: #6c757d;
+}
+
+.text-decoration-none{
+    text-decoration: none;
 }
 
 .column-card{
@@ -58,6 +64,7 @@
   border: #1a1d20 solid 1px;
   cursor: pointer;
   background: #ffffff;
+  color: #000000;
 }
 
 .column-card-span{

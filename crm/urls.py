@@ -13,4 +13,5 @@ urlpatterns = [
     path('opportunity-list/', views.opportunity_list, name='opportunity_list'),
     path('add-opportunity/<int:customer_id>/', views.add_opportunity, name='add_opportunity'),
     path('customer-kanban/', views.opportunity_kanban, name='opportunity_kanban'),
+    path('opportunity/<int:opportunity_id>/', views.opportunity, name='opportunity'),
 ]

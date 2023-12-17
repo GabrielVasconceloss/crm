@@ -18,19 +18,18 @@
                         <h5 style="color: {{ Status.text_color }}">{{ Status.title }}</h5>
                         <a href="#"><i class="bi bi-three-dots m-2 column-btn" aria-hidden="true"></i></a>
                     </div>
-                    {% for opportunity in opportunities_list %}
-                        {% if opportunity.status == Status %}
-                            <div class="column-body">
-                                <div class="column-card">
-                                    <strong>{{ opportunity.opportunity_name }}</strong><br>
-                                    <div class="column-card-span">
-                                        <span>{{ opportunity.customer.first_name }} {{ opportunity.customer.last_name }}</span>
+                    <div class="column-body">
+                        {% for opportunity in opportunities_list %}
+                            {% if opportunity.status == Status %}
+                                    <div class="column-card">
+                                        <strong>{{ opportunity.opportunity_name }}</strong><br>
+                                        <div class="column-card-span">
+                                            <span>{{ opportunity.customer.first_name }} {{ opportunity.customer.last_name }}</span>
+                                        </div>
                                     </div>
-                                </div>
-
-                            </div>
-                        {% endif %}
-                    {% endfor %}
+                            {% endif %}
+                        {% endfor %}
+                    </div>
                 </div>
             {% endfor %}
         </div>

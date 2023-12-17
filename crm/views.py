@@ -119,3 +119,8 @@ def opportunity_kanban(request):
     else:
         form = StatusForm()
     return render(request, 'opportunity_kanban.html', {'status_list': status_list, 'opportunities_list': opportunities_list, 'form': form})
+
+@login_required
+def opportunity(request, opportunity_id):
+    opportunity = get_object_or_404(Opportunity, id=opportunity_id)
+    return render(request, 'opportunity.html', {'opportunity': opportunity})

@@ -1,0 +1,17 @@
+{% extends 'index.html' %}
+
+{% block title %}
+    <title>Gabriel - Flow</title>
+{% endblock %}
+
+{% block cont %}
+    <div class="container mt-5">
+        <h2>Opportunity: {{ opportunity.opportunity_name }}</h2>
+        <p>Cliente: {{ opportunity.customer.first_name }} {{ opportunity.customer.last_name }}</p>
+        <p>Client: {{ opportunity.status.title }}</p>
+        <p>Description: {{ opportunity.opportunity_description }}</p>
+        <p>Value: {{ opportunity.amount }}</p>
+        <!-- Adicione outros detalhes conforme necessário -->
+    </div>
+
+{% endblock %}
