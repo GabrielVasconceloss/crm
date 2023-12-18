@@ -56,3 +56,15 @@
 
 {% endblock %}
 
+
+<div id="detalhes-expandidos" style="display:none;">
+    <div class="container mt-5">
+        <h2>Opportunity: {{ opportunity.opportunity_name }}</h2>
+        <p>Cliente: {{ opportunity.customer.first_name }} {{ opportunity.customer.last_name }}</p>
+        <p>Client: {{ opportunity.status.title }}</p>
+        <p>Description: {{ opportunity.opportunity_description }}</p>
+        <p>Value: {{ opportunity.amount }}</p>
+        <!-- Adicione outros detalhes conforme necessário -->
+    </div>
+</div>
+
